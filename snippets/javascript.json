@@ -1,0 +1,47 @@
+{
+    "Arrange/Act/Assert": {
+        "prefix": "arrange-act-assert",
+        "body": [
+            "// Arrange",
+            "// Define the initial program state",
+            "$1",
+            "",
+            "// Act",
+            "// Call the method to run the behavior",
+            "$2",
+            "",
+            "// Assert",
+            "// Verify (assert) your expectation matches reality",
+            "$3"
+        ],
+        "description": "AAA - Arrange/Act/Assert"
+    },
+
+    "Chai Assert Outcome": {
+        "prefix": "chai-assert-outcome",
+        "body": [
+            "assert.${1|equal,strictEqual|}(${1:actualResult}, ${2:expectedResult});"
+        ],
+        "description": "Chai assertion of test outcomes"
+    },
+
+    "Mocha Describe Suite Setup": {
+        "prefix": "mocha-describe-suite",
+        "body": [
+            "describe('${1:describe test suite to run}', function () {",
+            "$2",
+            "});"
+        ],
+        "description": "Mocha 'describe' suite setup"
+    },
+
+    "Mocha It Test Setup": {
+        "prefix": "mocha-it-test",
+        "body": [
+            "it('${1:describe expectation}', function () {",
+            "\t$2",
+            "});"
+        ],
+        "description": "Mocha 'it' test setup"
+    }
+}

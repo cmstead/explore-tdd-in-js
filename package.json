@@ -1,0 +1,23 @@
+{
+  "name": "explore-tdd-in",
+  "version": "1.0.0",
+  "description": "Explorations of TDD in Javascript - Source to accompany video(s)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha ./tests/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmstead/explore-tdd-in-js.git"
+  },
+  "author": "Chris Stead",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cmstead/explore-tdd-in-js/issues"
+  },
+  "homepage": "https://github.com/cmstead/explore-tdd-in-js#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
+  }
+}
