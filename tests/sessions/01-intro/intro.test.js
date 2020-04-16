@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const intro = require('../intro.js');
+const intro = require('../../../sessions/01-intro/intro.js');
 
 // @cm_stead on Twitter
 // https://github.com/cmstead/explore-tdd-in-js
