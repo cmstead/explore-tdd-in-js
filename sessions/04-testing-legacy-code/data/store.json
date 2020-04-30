@@ -1,0 +1,15 @@
+{
+    "teams": {
+        "TeamA": {
+            "toDo": [
+                {
+                    "name": "a team task",
+                    "description": ""
+                }
+            ],
+            "doing": [],
+            "done": []
+        }
+    },
+    "parkingLot": []
+}
