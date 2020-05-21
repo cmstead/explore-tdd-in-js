@@ -15,13 +15,22 @@
         $('#note-form').find('button').first().click();
     }
 
+    function getNthNote(index) {
+        const noteElement = getMainAppRootElement()
+            .find('ul')
+            .find('li')
+            .find('span')[index];
+
+        return $(noteElement);
+    }
+
     TestSuite
         .new('Note Keeper App')
         .setup(function () {
             jqreactive.bootstrap('#qunit-fixture', App);
         })
         .teardown(function () {
-
+            $('#qunit-fixture').html('');
         })
         .test(
             'bootstraps into existence',
@@ -49,14 +58,7 @@
                 enterTextIntoNoteInput(expectedNoteText);
                 clickAddNoteButton();
 
-                const noteElement = getMainAppRootElement()
-                    .find('ul')
-                    .find('li')
-                    .find('span')[0];
-
-
-
-                assert.equal($(noteElement).text(), expectedNoteText);
+                assert.equal($(getNthNote(0)).text(), expectedNoteText);
             }
         )
 
@@ -71,12 +73,7 @@
                 enterTextIntoNoteInput(expectedNoteText);
                 clickAddNoteButton();
 
-                const noteElement = getMainAppRootElement()
-                    .find('ul')
-                    .find('li')
-                    .find('span')[1];
-
-                assert.equal($(noteElement).text(), expectedNoteText);
+                assert.equal($(getNthNote(1)).text(), expectedNoteText);
             }
         )
 })();
