@@ -8,29 +8,28 @@ const InputForm = (function () {
     }
 
     InputForm.prototype = {
-        handleSubmit: function(event) {
+        handleSubmit: function (event) {
             event.preventDefault();
 
-            this.props.saveNote(this.state.note);
+            if (this.state.note.trim() !== '') {
+                this.props.saveNote(this.state.note);
 
-            this.setState({ note: '' });
+                this.setState({ note: '' });
+            }
         },
-        handleKeyup: function(event) {
+        handleKeyup: function (event) {
             const { name, value } = event.target;
 
             this.updateState({ [name]: value });
         },
-        render: function(props) {
-            console.log(this.props);
-            console.log(props);
-
+        render: function () {
             return this.renderView(`
-                <form submit="handleSubmit">
+                <form submit="handleSubmit" id="note-form">
                     <section>
                         <textarea 
                             type="text" 
                             name="note" 
-                            value="${ this.state.note }" 
+                            value="${ this.state.note}" 
                             placeholder="Your notes here"
                             keyup="handleKeyup"></textarea>
                     </section>

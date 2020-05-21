@@ -1,5 +1,5 @@
 const jqreactive = (function () {
-
+    
     const eventNames = [
         'blur',
         'change',

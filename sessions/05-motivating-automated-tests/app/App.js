@@ -1,8 +1,10 @@
 const App = (function () {
-    const {component} = jqreactive;
+    const { component } = jqreactive;
+
     function App() {
         this.components = {
-            InputForm
+            InputForm,
+            Note
         }
 
         this.state = {
@@ -11,27 +13,59 @@ const App = (function () {
     }
 
     App.prototype = {
-        saveNote: function(note) {
+        saveNote: function (note) {
             this.setState({
-                notes: this.state.notes.concat(note)
+                notes: this.state.notes.concat({
+                    note,
+                    editState: false
+                })
             })
         },
-        render: function() {
+        toggleEditState: function (noteIndex) {
+            const editState = this.state.notes[noteIndex].editState;
+            this.state.notes[noteIndex].editState = !editState;
+
+            this.setState({});
+        },
+        buildNotesProps: function () {
+            return this.state.notes.reduce(
+                (props, note, index) => ({
+                    ...props,
+                    [`note${index}`]: {
+                        note,
+                        index,
+                        toggleEditState: () => this.toggleEditState(index)
+                    }
+                }),
+                {}
+            );
+        },
+        buildNotesView: function () {
+            return '<ul>' +
+            this.state.notes
+                .map((_, index) =>
+                    `<Note props="note${index}"></Note>`)
+                .join('\n') +
+                '</ul>';
+        },
+
+        render: function () {
             return this.renderView(`
-                <div>
+                <div class="container" id="main-app">
                     <InputForm props="InputForm"></InputForm>
                     ${
-                        this.state.notes.length === 0
-                            ? '<div>No notes yet</div>'
-                            : this.state.notes.map(note => `<li>${note}</li>`).join('\n')
-                    }
+                this.state.notes.length === 0
+                    ? '<p>No notes yet</p>'
+                    : this.buildNotesView()
+                }
                 </div>
             `,
-            {
-                InputForm: {
-                    saveNote: (note) => this.saveNote(note)
-                }
-            });
+                {
+                    ...this.buildNotesProps(),
+                    InputForm: {
+                        saveNote: (note) => this.saveNote(note)
+                    }
+                });
         }
     };
 
